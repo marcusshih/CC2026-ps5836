@@ -2,5 +2,8 @@
 
 ## Creative Coding is ...
 
-1.  'Empower more voices in digital media arts.'  
-    source: SMU art school
+**Creative coding is:**  
+Empowering More Voices in Digital Art Spaces
+
+**Source:**  
+SMU Meadows School of the Arts — “What is Creative Coding?”
