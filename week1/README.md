@@ -3,7 +3,7 @@
 ## Creative Coding Definitions
 
 1. **Definition:**  
-   Creative coding can empower more voices in digital art spaces.
+   Empower more voices in digital art spaces.
 
    **Source:**  
    SMU Meadows School of the Arts — _What is Creative Coding?_
