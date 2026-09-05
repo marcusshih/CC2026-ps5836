@@ -2,7 +2,7 @@
 
 ## Creative Coding is...
 
-1. **CC is...**
+**1. CC is...**
 
 A new interdisciplinary art form that bridges the gap between technologists and artists.
 
@@ -20,7 +20,7 @@ https://www.gorillasun.de/blog/creative-coding-the-new-era/
 
 ---
 
-2. **CC is...**
+**2. CC is...**
 
 Sketching with code.
 
@@ -38,7 +38,7 @@ https://medium.com/processing-foundation/a-modern-prometheus-59aed94abe85
 
 ---
 
-3. **CC is...**
+**3. CC is...**
 
 Writing code without necessarily knowing where it is going.
 
@@ -56,7 +56,7 @@ https://timrodenbroeker.de/daniel-shiffman/
 
 ---
 
-4. **CC is...**
+**4. CC is...**
 
 “Creative coding is the practice of combining programming techniques with artistic expression”
 
@@ -74,7 +74,7 @@ https://www.smu.edu/meadows/newsandevents/news/2023/what-is-creative-coding
 
 ---
 
-5. **CC is...**
+**5. CC is...**
 
 “Creative coding uses software, code and computational processes to be expressive or to create art forms.”
 
@@ -93,7 +93,7 @@ https://www.arts.ac.uk/study-at-ual/short-courses/stories/how-to-start-creative-
 
 ---
 
-6. **CC is...**
+**6. CC is...**
 
 “Creative coding is the practice of making art with code.”
 
@@ -111,7 +111,7 @@ https://www.artsyshark.com/2021/05/26/what-is-creative-coding/
 
 ---
 
-7. **CC is...**
+**7. CC is...**
 
 “For me Creative Coding is a method of exploring code through the lens of a designer.”
 
@@ -129,7 +129,7 @@ https://nahuelgerth.de/thoughts/getting-started-with-creative-coding
 
 ---
 
-8. **CC is...**
+**8. CC is...**
 
 “Creative Coding is a way of learning how to program by creating visual art with computer graphics.”
 
@@ -147,7 +147,7 @@ https://github.com/bluekamandy/Creative-Coding-Course-with-SwiftProcessing
 
 ---
 
-9. **CC is...**
+**9. CC is...**
 
 “a discovery-based process consisting of exploration, iteration, and reflection”
 
@@ -165,7 +165,7 @@ https://www.researchgate.net/publication/262233280_Towards_a_creativity_support_
 
 ---
 
-10. **CC is...**
+**10. CC is...**
 
 “Creative Coding is an approach to programming computers”
 
@@ -183,7 +183,7 @@ https://dct.tcnj.edu/program/imm-areas-of-study/creative-coding/
 
 ---
 
-11. **CC is...**
+**11. CC is...**
 
 “Creative coding uses programming languages to generate art and music”
 
@@ -201,7 +201,7 @@ https://www.futurelearn.com/info/courses/fundamentals-of-creative-technologies-a
 
 ---
 
-12. **CC is...**
+**12. CC is...**
 
 “creative coding is defined by a more playful, interdisciplinary mindset”
 
@@ -219,7 +219,7 @@ https://computationalculture.net/theorising-while-practising-a-review-of-aesthet
 
 ---
 
-13. **CC is...**
+**13. CC is...**
 
 “The field of ‘creative coding’ emphasizes the goal of expression, rather than function”
 
@@ -237,7 +237,7 @@ https://www.evl.uic.edu/datsoupi/coding/
 
 ---
 
-14. **CC is...**
+**14. CC is...**
 
 “Creative Coding is an exciting practice of art and design work that uses software.”
 
@@ -255,7 +255,7 @@ https://myjcu.johncabot.edu/syllabus/syllabus_print.aspx?IDS=21066
 
 ---
 
-15. **CC is...**
+**15. CC is...**
 
 “‘Creative coding’ is a computing pedagogy”
 
@@ -277,7 +277,7 @@ https://www.frontiersin.org/journals/computer-science/articles/10.3389/fcomp.202
 
 ---
 
-16. **CC is...**
+**16. CC is...**
 
 “Creative coding uses code in the contexts of art, play, creativity, and self-expression.”
 
@@ -295,7 +295,7 @@ https://guidebook.hdyar.com/creative-coding/creative-coding-fundamentals/what-is
 
 ---
 
-17. **CC is...**
+**17. CC is...**
 
 “programming with aesthetic intent”
 
