@@ -83,17 +83,44 @@ const quotes = [
 // no need to edit anything below this line!
 // if you have made an error, you can check your history to see what might have gone wrong
 
+//colors elements
+const colorPairs = [
+  { bg: "#FC4EA0", text: "#FAFC4E" }, // vivid red-pink
+  { bg: "#FAFC4E", text: "#FC4EA0" }, // bright yellow
+  { bg: "#fa0a0a", text: "#29ff34" }, // red
+  { bg: "#29ff34", text: "#fa0a0a" }, // green
+  { bg: "#7C4DFF", text: "#29f8ff" }, // purple
+  { bg: "#29f8ff", text: "#7C4DFF" }, // sky blue
+  { bg: "#f58426", text: "#006bb6" }, // orange
+  { bg: "#006bb6", text: "#f58426" }, // blue
+];
+
 // a variable that holds the current quote
 let current = [];
+let shuffledColors = [];
+let currentColor;
+let colorIndex = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   // Seed with millis() so each page load gives a different quote.
   randomSeed(millis());
   textSize(32);
-  fill(10, 255, 10);
+  //fill(10, 255, 10);
   // calls the function to pick a quote
+  shuffledColors = shuffle([...colorPairs]);
   pickQuote();
+  pickColor();
+}
+
+function pickColor() {
+  if (colorIndex >= shuffledColors.length) {
+    shuffledColors = shuffle([...colorPairs]);
+    colorIndex = 0;
+  }
+
+  currentColor = shuffledColors[colorIndex];
+  colorIndex++;
 }
 
 function pickQuote() {
@@ -102,18 +129,28 @@ function pickQuote() {
 }
 
 function draw() {
-  background(255, 20, 250); // set the background color
+  background(currentColor.bg); // set the background color
+  fill(currentColor.text);
   drawQuote(); // draw the quote on screen
 }
 
 function drawQuote() {
   // draw text
   textAlign(CENTER, CENTER);
-  text("Creative Coding is.....", width / 2, height / 2 - 48);
+  text("Creative Coding is.....", width / 2, (height / 2) * 0.25);
   textStyle(BOLD);
-  text("'" + current.text + "'", width / 2, height / 2);
+  text("'" + current.text + "'", width / 2 - 300, height / 2 - 100, 600, 200);
   textAlign(RIGHT, CENTER);
-  text("-" + current.source, width - 100, height - 100);
+  // Source
+  let sourceWidth = width * 0.55;
+
+  text(
+    "- " + current.source,
+    width - sourceWidth - 50,
+    height - 160,
+    sourceWidth,
+    120
+  );
 }
 
 function windowResized() {
@@ -122,6 +159,7 @@ function windowResized() {
 
 function newQuote() {
   pickQuote();
+  pickColor();
   redraw();
 }
 
