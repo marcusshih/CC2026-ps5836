@@ -2,16 +2,85 @@
 // this is the only part of the file you need to edit!
 // computer go home
 const quotes = [
-  { text: "the intersection of programming, design, and art", source: "one eyed Scott" },
-  { text: "a chance for code to be wrong", source: "Sara" },
-  { text: "surprise, exploration, and aesthetic exploration", source: "Sally" },
-  { text: "process over results", source: "Sam" },
-  { text: "form over function", source: "Sean" },
-  { text: "iterative and experimental", source: "Scooby" },
-  { text: "a community of practice", source: "Seth" },
-  { text: "an opportunity to stick it to the man", source: "Shifty-eyed Susan" }
+  {
+    text: "A new interdisciplinary art form that bridges the gap between technologists and artists.",
+    source: "Ahmad Moussa — Creative Coding: The New Era, Gorilla Sun, 2023.",
+  },
+  {
+    text: "Sketching with code.",
+    source:
+      "Casey Reas & Ben Fry — A Modern Prometheus: The History of Processing, Processing Foundation, 2018.",
+  },
+  {
+    text: "Writing code without necessarily knowing where it is going.",
+    source:
+      "Daniel Shiffman — Daniel Shiffman on The Nature of Code, interview by Tim Rodenbröker.",
+  },
+  {
+    text: "Creative coding is the practice of combining programming techniques with artistic expression.",
+    source: "SMU Meadows School of the Arts — What is Creative Coding?, 2024.",
+  },
+  {
+    text: "Creative coding uses software, code and computational processes to be expressive or to create art forms.",
+    source: "University of the Arts London — How to Start Creative Coding.",
+  },
+  {
+    text: "Creative coding is the practice of making art with code.",
+    source:
+      "Andrew Bryant — How to Make Art with Creative Coding, Artsy Shark, 2021.",
+  },
+  {
+    text: "For me Creative Coding is a method of exploring code through the lens of a designer.",
+    source: "Nahuel Gerth — Getting Started with Creative Coding.",
+  },
+  {
+    text: "Creative Coding is a way of learning how to program by creating visual art with computer graphics.",
+    source: "Masood Kamandy — Creative Coding with Swift.",
+  },
+  {
+    text: "A discovery-based process consisting of exploration, iteration, and reflection.",
+    source:
+      "Mark C. Mitchell & Oliver Bown — Towards a Creativity Support Tool in Processing: Understanding the Needs of Creative Coders, OzCHI 2013.",
+  },
+  {
+    text: "Creative Coding is an approach to programming computers.",
+    source:
+      "The College of New Jersey, Design and Creative Technology — Creative Coding.",
+  },
+  {
+    text: "Creative coding uses programming languages to generate art and music.",
+    source:
+      "University of York — Creative Coding, Fundamentals of Creative Technologies and Interactive Experiences.",
+  },
+  {
+    text: "Creative coding is defined by a more playful, interdisciplinary mindset.",
+    source:
+      "David Young — Theorising while() Practising: A Review of Aesthetic Programming, Computational Culture, 2021.",
+  },
+  {
+    text: "The field of ‘creative coding’ emphasizes the goal of expression, rather than function.",
+    source:
+      "Daria Tsoupikova — Creative Coding, University of Illinois Chicago.",
+  },
+  {
+    text: "Creative Coding is an exciting practice of art and design work that uses software.",
+    source: "Anthony Stagliano — Creative Coding, John Cabot University, 2024.",
+  },
+  {
+    text: "‘Creative coding’ is a computing pedagogy.",
+    source:
+      "Kazjon Grace, Brittany Klaassens, Liam Bray & Alex Elton-Pym — An Open-Ended Blended Approach to Teaching Interaction Designers to Code, Frontiers in Computer Science, 2022.",
+  },
+  {
+    text: "Creative coding uses code in the contexts of art, play, creativity, and self-expression.",
+    source: "The Guidebook — What is Creative Coding?",
+  },
+  {
+    text: "Programming with aesthetic intent.",
+    source: "Cinder — About.",
+  },
 ];
-// no need to edit anything below this line! 
+// no need to edit anything below this line!
 // if you have made an error, you can check your history to see what might have gone wrong
 
 // a variable that holds the current quote
@@ -34,17 +103,17 @@ function pickQuote() {
 
 function draw() {
   background(255, 20, 250); // set the background color
-  drawQuote();  // draw the quote on screen
+  drawQuote(); // draw the quote on screen
 }
 
-function drawQuote() {   // draw text
+function drawQuote() {
+  // draw text
   textAlign(CENTER, CENTER);
   text("Creative Coding is.....", width / 2, height / 2 - 48);
   textStyle(BOLD);
   text("'" + current.text + "'", width / 2, height / 2);
   textAlign(RIGHT, CENTER);
   text("-" + current.source, width - 100, height - 100);
-
 }
 
 function windowResized() {
