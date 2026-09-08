@@ -54,8 +54,6 @@ Besides replacing the original "CC is..." quotes as required by the assignment, 
 
 9. Finally, to make the movement look a little better, I added an easing effect. I used an `easeOutCubic` cubic curve to change the `amount` used by `lerp()`. Originally, `anim` changes linearly from 0 to 1 at a constant rate. With easing, the movement can start faster and slow down near the end, making the move in / move out animation feel less like simple constant-speed movement.
 
----
-
 ## CC is... def and src list
 
 ### 1. A new interdisciplinary art form that bridges the gap between technologists and artists.
