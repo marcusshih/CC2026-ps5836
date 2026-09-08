@@ -56,7 +56,7 @@ Besides replacing the original "CC is..." quotes as required by the assignment, 
 
 ---
 
-## CC is def and source list
+## CC is... def and src list
 
 **1. CC is...**
 
