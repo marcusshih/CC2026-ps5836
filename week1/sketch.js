@@ -4,80 +4,43 @@
 const quotes = [
   {
     text: "A new interdisciplinary art form that bridges the gap between technologists and artists.",
-    source: "Ahmad Moussa — Creative Coding: The New Era, Gorilla Sun, 2023.",
+    source: "Ahmad Moussa",
   },
   {
     text: "Sketching with code.",
-    source:
-      "Casey Reas & Ben Fry — A Modern Prometheus: The History of Processing, Processing Foundation, 2018.",
+    source: "Casey Reas & Ben Fry",
   },
   {
     text: "Writing code without necessarily knowing where it is going.",
-    source:
-      "Daniel Shiffman — Daniel Shiffman on The Nature of Code, interview by Tim Rodenbröker.",
+    source: "Daniel Shiffman",
   },
   {
-    text: "Creative coding is the practice of combining programming techniques with artistic expression.",
-    source: "SMU Meadows School of the Arts — What is Creative Coding?, 2024.",
+    text: "Creative coding is the practice of combining programming techniques with artistic expression",
+    source: "SMU Meadows School of the Arts",
   },
   {
     text: "Creative coding uses software, code and computational processes to be expressive or to create art forms.",
-    source: "University of the Arts London — How to Start Creative Coding.",
+    source: "University of the Arts London",
   },
   {
     text: "Creative coding is the practice of making art with code.",
-    source:
-      "Andrew Bryant — How to Make Art with Creative Coding, Artsy Shark, 2021.",
+    source: "Andrew Bryant",
   },
   {
     text: "For me Creative Coding is a method of exploring code through the lens of a designer.",
-    source: "Nahuel Gerth — Getting Started with Creative Coding.",
+    source: "Nahuel Gerth",
   },
   {
     text: "Creative Coding is a way of learning how to program by creating visual art with computer graphics.",
-    source: "Masood Kamandy — Creative Coding with Swift.",
+    source: "Masood Kamandy",
   },
   {
-    text: "A discovery-based process consisting of exploration, iteration, and reflection.",
-    source:
-      "Mark C. Mitchell & Oliver Bown — Towards a Creativity Support Tool in Processing: Understanding the Needs of Creative Coders, OzCHI 2013.",
+    text: "Creative coding uses programming languages to generate art and music",
+    source: "University of York",
   },
   {
-    text: "Creative Coding is an approach to programming computers.",
-    source:
-      "The College of New Jersey, Design and Creative Technology — Creative Coding.",
-  },
-  {
-    text: "Creative coding uses programming languages to generate art and music.",
-    source:
-      "University of York — Creative Coding, Fundamentals of Creative Technologies and Interactive Experiences.",
-  },
-  {
-    text: "Creative coding is defined by a more playful, interdisciplinary mindset.",
-    source:
-      "David Young — Theorising while() Practising: A Review of Aesthetic Programming, Computational Culture, 2021.",
-  },
-  {
-    text: "The field of ‘creative coding’ emphasizes the goal of expression, rather than function.",
-    source:
-      "Daria Tsoupikova — Creative Coding, University of Illinois Chicago.",
-  },
-  {
-    text: "Creative Coding is an exciting practice of art and design work that uses software.",
-    source: "Anthony Stagliano — Creative Coding, John Cabot University, 2024.",
-  },
-  {
-    text: "‘Creative coding’ is a computing pedagogy.",
-    source:
-      "Kazjon Grace, Brittany Klaassens, Liam Bray & Alex Elton-Pym — An Open-Ended Blended Approach to Teaching Interaction Designers to Code, Frontiers in Computer Science, 2022.",
-  },
-  {
-    text: "Creative coding uses code in the contexts of art, play, creativity, and self-expression.",
-    source: "The Guidebook — What is Creative Coding?",
-  },
-  {
-    text: "Programming with aesthetic intent.",
-    source: "Cinder — About.",
+    text: "Where the artist-programmer is primarily invested in speculation, experimentation, and iterative practice.",
+    source: "David Young",
   },
 ];
 // no need to edit anything below this line!
@@ -85,13 +48,13 @@ const quotes = [
 
 //colors elements
 const colorPairs = [
-  { bg: "#FC4EA0", text: "#FAFC4E" }, // vivid red-pink
-  { bg: "#FAFC4E", text: "#FC4EA0" }, // bright yellow
-  { bg: "#fa0a0a", text: "#29ff34" }, // red
-  { bg: "#29ff34", text: "#fa0a0a" }, // green
-  { bg: "#7C4DFF", text: "#29f8ff" }, // purple
-  { bg: "#29f8ff", text: "#7C4DFF" }, // sky blue
-  { bg: "#f58426", text: "#006bb6" }, // orange
+  { bg: "#FFFFFF", text: "#F68320" }, // white
+  { bg: "#fff000", text: "#0056b8" }, // bright yellow
+  { bg: "#BC0E23", text: "#283D37" }, // red
+  { bg: "#283D37", text: "#BC0E23" }, // green
+  { bg: "#B1906A", text: "#000000" }, // purple
+  { bg: "#000000", text: "#B1906A" }, // sky blue
+  { bg: "#F68320", text: "#FFFFFF" }, // orange
   { bg: "#006bb6", text: "#f58426" }, // blue
 ];
 
@@ -100,6 +63,10 @@ let current = [];
 let shuffledColors = [];
 let currentColor;
 let colorIndex = 0;
+//for move in animation
+let anim = 1;
+let isExiting = false;
+let isEntering = false;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -114,12 +81,13 @@ function setup() {
 }
 
 function pickColor() {
+  //prevent the color from repeating, if the colorIndex is greater than or equal to the length of the shuffledColors array, shuffle the colors again and reset the index to 0
   if (colorIndex >= shuffledColors.length) {
     shuffledColors = shuffle([...colorPairs]);
     colorIndex = 0;
   }
 
-  currentColor = shuffledColors[colorIndex];
+  currentColor = shuffledColors[colorIndex]; // pick the current color from the shuffled array
   colorIndex++;
 }
 
@@ -131,38 +99,107 @@ function pickQuote() {
 function draw() {
   background(currentColor.bg); // set the background color
   fill(currentColor.text);
+
+  // move out
+  if (isExiting) {
+    anim -= 0.06; // decrease the animation value to move out
+
+    //update the quote and color when the animation is done moving out
+    if (anim <= 0) {
+      anim = 0; //stop at 0 when it's negative
+
+      pickQuote();
+      pickColor();
+
+      //break the loop check
+      isExiting = false;
+      isEntering = true;
+    }
+  }
+
+  // move in
+  if (isEntering) {
+    anim += 0.06; // increase the animation value to move in
+
+    if (anim >= 1) {
+      anim = 1; //stop at 1 when it's over 1
+      isEntering = false; //break the loop check
+    }
+  }
+
   drawQuote(); // draw the quote on screen
 }
 
 function drawQuote() {
-  // draw text
-  textAlign(CENTER, CENTER);
-  text("Creative Coding is.....", width / 2, (height / 2) * 0.25);
-  textStyle(BOLD);
-  text("'" + current.text + "'", width / 2 - 300, height / 2 - 100, 600, 200);
-  textAlign(RIGHT, CENTER);
-  // Source
+  let quoteWidth = width * 0.7;
   let sourceWidth = width * 0.55;
+
+  let eased = easeOut(anim); // eased = 1 - (1-anim)^3
+
+  //move in and out animation
+  // entering: right -> center
+  // exiting: center -> left
+  //lerp(start, end, amount)
+  //when anim=1, xoffset=0, when anim=0, xOffset=-width for exiting and xOffset=width for entering
+  let xOffset;
+
+  if (isExiting) {
+    xOffset = lerp(-width, 0, eased);
+  } else {
+    xOffset = lerp(width, 0, eased);
+  }
+
+  // Title
+  textAlign(CENTER, CENTER);
+  textStyle(BOLD);
+  textSize(32);
+
+  text("Creative Coding is.....", width / 2, height / 2 - 180);
+
+  // Quote
+  textStyle(BOLD);
+  textLeading(42);
+
+  text(
+    "'" + current.text + "'",
+    width / 2 - quoteWidth / 2 + xOffset, // + xOffset for animation
+    height / 2 - 100,
+    quoteWidth,
+    220
+  );
+
+  // Source
+  textStyle(BOLD);
+  textSize(20);
+  textLeading(28);
+  textAlign(RIGHT, TOP);
 
   text(
     "- " + current.source,
-    width - sourceWidth - 50,
+    width - sourceWidth - 80 + xOffset, // + xOffset for animation
     height - 160,
     sourceWidth,
     120
   );
 }
 
+function easeOut(x) {
+  return 1 - pow(1 - x, 3); //if x = anim, so it will be y = 1 - (1-anim)^3, which is a cubic easing function that starts fast and slows down towards the end
+}
+
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
 
-function newQuote() {
-  pickQuote();
-  pickColor();
-  redraw();
-}
+// function newQuote() {
+//   pickQuote();
+//   pickColor();
+//   redraw();
+// }
 
 function mousePressed() {
-  newQuote();
+  //after click, check the animation collision, iif old quote is not exiting and new quote is not entering, means there's no animation, so should start the animation and let old quote exit.
+  if (!isExiting && !isEntering) {
+    isExiting = true;
+  }
 }
