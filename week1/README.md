@@ -56,7 +56,7 @@ Besides replacing the original "CC is..." quotes as required by the assignment, 
 
 ---
 
-## Creative Coding is...
+## CC is def and source list
 
 **1. CC is...**
 
