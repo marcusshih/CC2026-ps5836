@@ -38,7 +38,7 @@ const quotes = [
     text: "Using programming languages to generate art and music",
     source: "University of York",
   },
-  
+];
 // no need to edit anything below this line!
 // if you have made an error, you can check your history to see what might have gone wrong
 
