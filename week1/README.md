@@ -98,7 +98,7 @@ https://medium.com/processing-foundation/a-modern-prometheus-59aed94abe85
 
 **Definition:**
 
-“And for me, it boils down to the idea that when I’m, you know, in giant air quotes, now ‘Creative Coding’, I am writing code where that I don’t know where it’s going, necessarily.”
+“And for me, it boils down to the idea that when I’m, you know, in giant air quotes, now ‘Creative Coding’, I am writing code where that I don’t knowx where it’s going, necessarily.”
 
 **Source:**
 Daniel Shiffman — _Daniel Shiffman on The Nature of Code_, interview by Tim Rodenbröker.
