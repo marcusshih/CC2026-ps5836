@@ -15,27 +15,27 @@ const quotes = [
     source: "Daniel Shiffman",
   },
   {
-    text: "Creative coding is the practice of combining programming techniques with artistic expression",
+    text: "The practice of combining programming techniques with artistic expression",
     source: "SMU Meadows School of the Arts",
   },
   {
-    text: "Creative coding uses software, code and computational processes to be expressive or to create art forms.",
+    text: "Using software, code and computational processes to be expressive or to create art forms.",
     source: "University of the Arts London",
   },
   {
-    text: "Creative coding is the practice of making art with code.",
+    text: "The practice of making art with code.",
     source: "Andrew Bryant",
   },
   {
-    text: "For me Creative Coding is a method of exploring code through the lens of a designer.",
+    text: "A method of exploring code through the lens of a designer.",
     source: "Nahuel Gerth",
   },
   {
-    text: "Creative Coding is a way of learning how to program by creating visual art with computer graphics.",
+    text: "A way of learning how to program by creating visual art with computer graphics.",
     source: "Masood Kamandy",
   },
   {
-    text: "Creative coding uses programming languages to generate art and music",
+    text: "Using programming languages to generate art and music",
     source: "University of York",
   },
   {
