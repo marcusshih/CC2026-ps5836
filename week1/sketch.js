@@ -38,11 +38,7 @@ const quotes = [
     text: "Using programming languages to generate art and music",
     source: "University of York",
   },
-  {
-    text: "Where the artist-programmer is primarily invested in speculation, experimentation, and iterative practice.",
-    source: "David Young",
-  },
-];
+  
 // no need to edit anything below this line!
 // if you have made an error, you can check your history to see what might have gone wrong
 
