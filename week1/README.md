@@ -12,7 +12,7 @@ This semester, I am excited to explore code beyond the screen. I want to experim
 
 ---
 
-## Coding "CC is..." sketch.js coding notes
+## sketch.js coding notes
 
 The last time I worked with p5.js was almost a year ago. Coming back to Creative Coding this time, I wanted to refresh my memory and also learn more things that I did not get to try in my undergraduate Creative Coding course.
 
@@ -68,7 +68,7 @@ Besides replacing the original "CC is..." quotes as required by the assignment, 
 
 ---
 
-## CC is... def and src list
+## cc is... def and src list
 
 ### 1. A new interdisciplinary art form that bridges the gap between technologists and artists.
 
