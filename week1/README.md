@@ -1,6 +1,18 @@
 # Week 1 notes
 
-## Coding "CC is..." work
+## Reading Response
+
+After reading, I started to think of code as a system made up of rules, rather than something that simply executes my ideas and produces results. The rules I create can also shape what is possible within that system.
+
+I actually finished my code before realizing there was also a reading response assignment. Looking back, this idea connects to my Week 1 project. Instead of designing one fixed outcome, I built a system where quotes, colors, and animations change based on the rules I created. I still designed the structure, but I do not fully control what appears next. I like this part of coding because it allows unexpected results to happen within the rules I set. It gives the code a certain amount of randomness while I still control the overall system.
+
+At the same time, code can also work against me. For example, making one quote move out and another move in feels very simple in my head, but in code it has to be broken into very specific logic. I also have to think about possible conflicts or unexpected situations before it can run smoothly. This makes me realize how different an intuitive idea can become once it has to be translated into code.
+
+This semester, I am excited to explore code beyond the screen. I want to experiment more with sound, physical interaction, and responsive systems, and see how code can become part of the creative process itself.
+
+---
+
+## Coding "CC is..." sketch.js coding notes
 
 The last time I worked with p5.js was almost a year ago. Coming back to Creative Coding this time, I wanted to refresh my memory and also learn more things that I did not get to try in my undergraduate Creative Coding course.
 
