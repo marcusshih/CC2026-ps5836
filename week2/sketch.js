@@ -84,7 +84,7 @@ function draw() {
   if (variation === 1) {
     background(220, 70, 7);
 
-    //orbit-cricle
+    //orbit-cricles
     push();
     translate(width / 2, height / 2);
     scale(width / 900, height / 950);
@@ -360,10 +360,5 @@ function mousePressed() {
     variation = 0;
   }
 
-  redraw();
-}
-
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
   redraw();
 }
