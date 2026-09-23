@@ -1,0 +1,353 @@
+let zoomSpeed = 1.003;
+let spacing = 2.5;
+
+// I tried 8 before but it was too fast
+// let spawnScale = 8;
+let spawnScale = 10;
+
+let removeScale = 50;
+let newScale = 0.001;
+let newZoomSpeed = 1.19;
+let catchUpScale = 0.15;
+
+let levels = 6;
+let minDrawScale = 0.01;
+
+let kaleidoscopes = [];
+let rotation = 0;
+
+let mousePower = 0;
+let mouseBrightness = 1;
+
+function setup() {
+  createCanvas(900, 900);
+
+  // learned from p5 reference
+  pixelDensity(2);
+
+  // hue is easier for this project because I want to use the color wheel
+  colorMode(HSB, 360, 100, 100, 255);
+
+  rectMode(CENTER);
+  strokeCap(ROUND);
+  strokeJoin(ROUND);
+
+  // create several kaleidoscopes at different starting scales
+  for (let index = 0; index < levels; index++) {
+    kaleidoscopes.push({
+      seed: random(10000),
+      scale: 1 / pow(spacing, index),
+      spawned: false,
+      growthSpeed: zoomSpeed,
+    });
+  }
+
+  console.log("Setup complete. Loaded levels:", kaleidoscopes.length);
+}
+
+function draw() {
+  background(0);
+
+  // mouse distance from center
+  let mouseDist = dist(mouseX, mouseY, width / 2, height / 2);
+  let maxDist = dist(0, 0, width / 2, height / 2);
+
+  // center = 1, farther away = closer to 0
+  mousePower = map(mouseDist, 0, maxDist, 1, 0);
+  mousePower = constrain(mousePower, 0, 1);
+
+  // moving mouse left/right changes rotation direction and speed
+  rotation += map(mouseX, 0, width, -0.035, 0.035);
+
+  // closer to the center = brighter
+  mouseBrightness = map(mousePower, 0, 1, 0.8, 1.25);
+
+  // closer to the center = faster tunnel
+  let mouseZoom = map(mousePower, 0, 1, 1, 1.015);
+
+  for (let index = 0; index < kaleidoscopes.length; index++) {
+    let kaleido = kaleidoscopes[index];
+
+    // if too small, don't draw it because it will be invisible anyway
+    if (kaleido.scale > minDrawScale) {
+      drawKaleidoscope(kaleido.seed, kaleido.scale, rotation);
+    }
+
+    // scale grows faster when mouse is closer to center
+    kaleido.scale *= kaleido.growthSpeed * mouseZoom;
+
+    console.log(kaleido.scale);
+
+    // new kaleidoscopes start faster, then return to normal speed,
+    // to catch up to the others
+    if (kaleido.growthSpeed > zoomSpeed && kaleido.scale >= catchUpScale) {
+      kaleido.growthSpeed = zoomSpeed;
+
+      // console.log("caught up to normal speed");
+    }
+  }
+
+  // first item is the oldest / outermost one
+  let outerKaleido = kaleidoscopes[0];
+
+  // create one new kaleidoscope
+  if (outerKaleido.scale >= spawnScale && outerKaleido.spawned == false) {
+    console.log("Spawning new layer at scale:", outerKaleido.scale.toFixed(2));
+
+    kaleidoscopes.push({
+      seed: random(10000),
+      scale: newScale,
+      spawned: false,
+      growthSpeed: newZoomSpeed,
+    });
+
+    // stop this same layer from spawning every frame
+    outerKaleido.spawned = true;
+  }
+
+  // remove the old one after it goes far outside
+  if (outerKaleido.scale >= removeScale) {
+    // console.log("old gone");
+    kaleidoscopes.shift();
+  }
+}
+
+function drawKaleidoscope(seed, scaleAmount, rotAmount) {
+  // p5.Polar uses its own center,
+  // so I reset the matrix before drawing each kaleidoscope
+  resetMatrix();
+
+  // here p5.Polar can set the center directly
+  setCenter(width / 2, height / 2);
+
+  scale(scaleAmount);
+  rotate(rotAmount);
+
+  // keeps the same random result for the same kaleidoscope
+  randomSeed(seed);
+
+  // each kaleidoscope starts from a different hue
+  let baseHue = random(360);
+
+  // quick helper function so I don't type % 360 every time
+  let getHue = (offset) => (baseHue + offset) % 360;
+
+  // ellipse layers from outside to inside
+  drawEllipses(
+    int(random(10, 15)),
+    random(45, 60),
+    random(45, 60),
+    random(145, 165),
+    getHue(0),
+    220,
+    scaleAmount
+  );
+
+  drawEllipses(
+    int(random(8, 12)),
+    random(25, 35),
+    random(25, 35),
+    random(110, 130),
+    getHue(45),
+    210,
+    scaleAmount
+  );
+
+  drawEllipses(
+    int(random(8, 12)),
+    random(25, 35),
+    random(25, 35),
+    random(65, 80),
+    getHue(90),
+    200,
+    scaleAmount
+  );
+
+  drawEllipses(
+    int(random(10, 14)),
+    random(6, 10),
+    random(6, 10),
+    random(35, 50),
+    getHue(150),
+    240,
+    scaleAmount
+  );
+
+  drawEllipses(
+    int(random(5, 8)),
+    random(12, 18),
+    random(12, 18),
+    random(25, 38),
+    getHue(220),
+    235,
+    scaleAmount
+  );
+
+  // other shapes
+  drawTriangles(4, random(6, 9), random(60, 75), getHue(300), 230, scaleAmount);
+
+  drawTriangles(
+    4,
+    random(8, 11),
+    random(125, 145),
+    getHue(0),
+    220,
+    scaleAmount
+  );
+
+  drawSquares(8, random(2, 4), random(80, 95), getHue(45), 220, scaleAmount);
+
+  drawSquares(4, random(3, 5), random(115, 130), getHue(150), 220, scaleAmount);
+
+  // one shape in the center
+  drawCenterHexagon(random(10, 15), getHue(90), 255, scaleAmount);
+}
+
+// all shapes use the same neon colors
+function getColors(hueVal, alphaVal) {
+  let brightness = min(100, 100 * mouseBrightness);
+
+  return {
+    fill: color(hueVal, 80, brightness, alphaVal * 0.08),
+
+    glow: color(hueVal, 90, brightness, alphaVal * 0.12),
+
+    line: color(hueVal, 80, brightness, alphaVal),
+
+    white: color(hueVal, 0, brightness, alphaVal * 0.95),
+  };
+}
+
+function drawEllipses(
+  count,
+  ellipseWidth,
+  ellipseHeight,
+  distance,
+  hueVal,
+  alphaVal,
+  scaleAmount
+) {
+  let colors = getColors(hueVal, alphaVal);
+
+  // p5.Polar does that radial repetition for me
+
+  fill(colors.fill);
+  noStroke();
+
+  // how to use: polarEllipse( angle, widthRadius, heightRadius, [distance] )
+  polarEllipses(count, ellipseWidth, ellipseHeight, distance);
+
+  noFill();
+
+  // faint wider line behind
+  stroke(colors.glow);
+  strokeWeight(1.8 / scaleAmount);
+
+  polarEllipses(count, ellipseWidth, ellipseHeight, distance);
+
+  // main line
+  stroke(colors.line);
+  strokeWeight(1.05 / scaleAmount);
+
+  polarEllipses(count, ellipseWidth, ellipseHeight, distance);
+
+  // bright highlight
+  stroke(colors.white);
+  strokeWeight(0.22 / scaleAmount);
+
+  polarEllipses(count, ellipseWidth, ellipseHeight, distance);
+}
+
+function drawTriangles(count, size, distance, hueVal, alphaVal, scaleAmount) {
+  let colors = getColors(hueVal, alphaVal);
+
+  // same idea as drawEllipses
+  // p5.Polar places all the triangles around the center
+
+  fill(colors.fill);
+  noStroke();
+
+  polarTriangles(count, size, distance);
+
+  noFill();
+
+  stroke(colors.glow);
+  strokeWeight(1.6 / scaleAmount);
+
+  polarTriangles(count, size, distance);
+
+  stroke(colors.line);
+  strokeWeight(0.95 / scaleAmount);
+
+  polarTriangles(count, size, distance);
+
+  stroke(colors.white);
+  strokeWeight(0.2 / scaleAmount);
+
+  polarTriangles(count, size, distance);
+}
+
+function drawSquares(count, size, distance, hueVal, alphaVal, scaleAmount) {
+  let colors = getColors(hueVal, alphaVal);
+
+  // no manual rotate + translate loop here
+  // p5.Polar repeats the squares around the center
+
+  fill(colors.fill);
+  noStroke();
+
+  polarSquares(count, size, distance);
+
+  noFill();
+
+  stroke(colors.glow);
+  strokeWeight(1.6 / scaleAmount);
+
+  polarSquares(count, size, distance);
+
+  stroke(colors.line);
+  strokeWeight(0.95 / scaleAmount);
+
+  polarSquares(count, size, distance);
+
+  stroke(colors.white);
+  strokeWeight(0.2 / scaleAmount);
+
+  polarSquares(count, size, distance);
+}
+
+function drawCenterHexagon(radius, hueVal, alphaVal, scaleAmount) {
+  let colors = getColors(hueVal, alphaVal);
+
+  // p5.Polar already has a hexagon function,
+  // so I don't need my own beginShape() version here
+
+  fill(colors.fill);
+  noStroke();
+
+  polarHexagon(0, radius, 0);
+
+  noFill();
+
+  stroke(colors.glow);
+  strokeWeight(1.8 / scaleAmount);
+
+  polarHexagon(0, radius, 0);
+
+  stroke(colors.line);
+  strokeWeight(1.05 / scaleAmount);
+
+  polarHexagon(0, radius, 0);
+
+  stroke(colors.white);
+  strokeWeight(0.22 / scaleAmount);
+
+  polarHexagon(0, radius, 0);
+}
+
+function mousePressed() {
+  console.log("Mouse clicked! Adding rotation boost.");
+
+  // click gives the tunnel a sudden 45 degree turn
+  rotation += PI / 4;
+}
