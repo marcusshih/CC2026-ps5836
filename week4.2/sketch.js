@@ -1,11 +1,11 @@
-let layerCount = 20;
-let sizeStep = 20;
+let layerCount = 40;
+let sizeStep = 18;
 let angleStep = 5;
 
 let exportSvg = false;
 
 function setup() {
-  createCanvas(576, 384);
+  createCanvas(1200, 900);
 
   angleMode(DEGREES);
   rectMode(CENTER);
