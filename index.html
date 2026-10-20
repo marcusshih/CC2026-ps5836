@@ -1,41 +1,223 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <script src="https://cdn.jsdelivr.net/npm/p5@2.3.1/lib/p5.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marcus — Creative Coding</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
 
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-    </style>
     <meta name="robots" content="noindex" />
   </head>
   <body>
-    <h1>Marcus - ps5836</h1>
-    <ul>
-      <li>
-        <a href="./week1/index.html">Assignment 1 - Creative Coding is...</a>
-      </li>
-      <li><a href="./week1/README.html">Assignment 1 - notes</a></li>
-      <li><a href="./week2/index.html">Week2 Assignment</a></li>
-      <li><a href="./week3/index.html">Week3 Assignment - Sketch 1</a></li>
-      <li><a href="./week3/index2.html">Week3 Assignment - Sketch 2</a></li>
-      <li><a href="./week3/index3.html">Week3 Assignment - Sketch 3</a></li>
-      <li>
-        <a href="./week3/index4.html">Week3 Assignment - Sketch 4(Bonus)</a>
-      </li>
-      <li>
-        <a href="./week3/slow_version.html">Week3 Assignment - slow_version</a>
-      </li>
-      <li>
-        <a href="./week4.1/index.html">Week4.1 Assignment</a>
-      </li>
-      <li>
-        <a href="./week4.2/index.html">Week4.2 Assignment</a>
-      </li>
-      <li>
-        <a href="./week6/index.html">Week6 Assignment</a>
-      </li>
-    </ul>
+    <main>
+      <header>
+        <h1>Marcus Shih - ps5836</h1>
+      </header>
+      <ul class="project-grid">
+        <li>
+          <a class="project-card" href="./week1/index.html">
+            <span class="thumbnail-frame">
+              <img
+                class="thumbnail"
+                src="thumbnail/week1.png"
+                alt=""
+                loading="lazy"
+              />
+            </span>
+            <span class="project-title">Week 1 Assignment</span>
+          </a>
+        </li>
+        <li>
+          <a class="project-card" href="./week1/README.html">
+            <span
+              class="thumbnail-frame note-thumbnail note-color-1"
+              aria-hidden="true"
+            >
+              <span class="note-week">Week 1</span>
+              <span class="note-word">Notes</span>
+              <span class="note-caption">Process and reflection</span>
+            </span>
+            <span class="project-title">Week 1 — Notes</span>
+          </a>
+        </li>
+        <li>
+          <a class="project-card" href="./week2/index.html">
+            <span class="thumbnail-frame">
+              <img
+                class="thumbnail"
+                src="thumbnail/week2.png"
+                alt=""
+                loading="lazy"
+              />
+            </span>
+            <span class="project-title">Week2 Assignment</span>
+          </a>
+        </li>
+        <li>
+          <a class="project-card" href="./week2/README.html">
+            <span
+              class="thumbnail-frame note-thumbnail note-color-2"
+              aria-hidden="true"
+            >
+              <span class="note-week">Week 2</span>
+              <span class="note-word">Notes</span>
+              <span class="note-caption">Process and reflection</span>
+            </span>
+            <span class="project-title">Week 2 — Notes</span>
+          </a>
+        </li>
+        <li>
+          <a class="project-card" href="./week3/index.html">
+            <span class="thumbnail-frame">
+              <img
+                class="thumbnail"
+                src="thumbnail/week3.png"
+                alt=""
+                loading="lazy"
+              />
+            </span>
+            <span class="project-title">Week3 Assignment - Sketch 1</span>
+          </a>
+        </li>
+        <li>
+          <a class="project-card" href="./week3/index2.html">
+            <span class="thumbnail-frame">
+              <img
+                class="thumbnail"
+                src="thumbnail/week3-2.png"
+                alt=""
+                loading="lazy"
+              />
+            </span>
+            <span class="project-title">Week3 Assignment - Sketch 2</span>
+          </a>
+        </li>
+        <li>
+          <a class="project-card" href="./week3/index3.html">
+            <span class="thumbnail-frame">
+              <img
+                class="thumbnail"
+                src="thumbnail/week3-3.png"
+                alt=""
+                loading="lazy"
+              />
+            </span>
+            <span class="project-title">Week3 Assignment - Sketch 3</span>
+          </a>
+        </li>
+        <li>
+          <a class="project-card" href="./week3/index4.html">
+            <span class="thumbnail-frame">
+              <img
+                class="thumbnail"
+                src="thumbnail/week3-polar.png"
+                alt=""
+                loading="lazy"
+              />
+            </span>
+            <span class="project-title"
+              >Week3 Assignment - Sketch 4(Bonus)</span
+            >
+          </a>
+        </li>
+        <li>
+          <a class="project-card" href="./week3/slow_version.html">
+            <span class="thumbnail-frame">
+              <img
+                class="thumbnail"
+                src="thumbnail/week3-slow.png"
+                alt=""
+                loading="lazy"
+              />
+            </span>
+            <span class="project-title">Week3 Assignment - slow_version</span>
+          </a>
+        </li>
+        <li>
+          <a class="project-card" href="./week3/README.html">
+            <span
+              class="thumbnail-frame note-thumbnail note-color-3"
+              aria-hidden="true"
+            >
+              <span class="note-week">Week 3</span>
+              <span class="note-word">Notes</span>
+              <span class="note-caption">Process and reflection</span>
+            </span>
+            <span class="project-title">Week 3 — Notes</span>
+          </a>
+        </li>
+        <li>
+          <a class="project-card" href="./week4.1/index.html">
+            <span class="thumbnail-frame">
+              <img
+                class="thumbnail"
+                src="thumbnail/week4.1.jpeg"
+                alt=""
+                loading="lazy"
+              />
+            </span>
+            <span class="project-title">Week4.1 Assignment</span>
+          </a>
+        </li>
+        <li>
+          <a class="project-card" href="./week4.2/index.html">
+            <span class="thumbnail-frame">
+              <img
+                class="thumbnail"
+                src="thumbnail/week4.2.jpeg"
+                alt=""
+                loading="lazy"
+              />
+            </span>
+            <span class="project-title">Week4.2 Assignment</span>
+          </a>
+        </li>
+        <li>
+          <a class="project-card" href="./week4.1/README.html">
+            <span
+              class="thumbnail-frame note-thumbnail note-color-5"
+              aria-hidden="true"
+            >
+              <span class="note-week">Week 4</span>
+              <span class="note-word">Notes</span>
+              <span class="note-caption">Process and reflection</span>
+            </span>
+            <span class="project-title">Week 4 — Notes</span>
+          </a>
+        </li>
+        <li>
+          <a class="project-card" href="./week6/index.html">
+            <span class="thumbnail-frame">
+              <img
+                class="thumbnail"
+                src="thumbnail/week6.png"
+                alt=""
+                loading="lazy"
+              />
+            </span>
+            <span class="project-title">Week6 Assignment</span>
+          </a>
+        </li>
+        <li>
+          <a class="project-card" href="./week6/README.html">
+            <span
+              class="thumbnail-frame note-thumbnail note-color-6"
+              aria-hidden="true"
+            >
+              <span class="note-week">Week 6</span>
+              <span class="note-word">Notes</span>
+              <span class="note-caption">Process and reflection</span>
+            </span>
+            <span class="project-title">Week 6 — Notes</span>
+          </a>
+        </li>
+      </ul>
+    </main>
   </body>
 </html>

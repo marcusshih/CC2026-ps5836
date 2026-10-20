@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Week 1 notes — Marcus Shih</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <main class="notes-page">
+      <nav class="notes-nav" aria-label="Notes navigation">
+        <a href="../index.html">← All projects</a>
+        <a href="index.html">View Week 1 sketch</a>
+      </nav>
+      <article class="notes-content">
+<h1 id="label-Week+1+notes">Week 1 notes</h1>
+
+<h2 id="label-Reading+Response">Reading Response</h2>
+
+<p>After reading, I started to think of code as a system made up of rules, rather than something that simply executes my ideas and produces results. The rules I create can also shape what is possible within that system.</p>
+
+<p>I actually finished my code before realizing there was also a reading response assignment. Looking back, this idea connects to my Week 1 project. Instead of designing one fixed outcome, I built a system where quotes, colors, and animations change based on the rules I created. I still designed the structure, but I do not fully control what appears next. I like this part of coding because it allows unexpected results to happen within the rules I set. It gives the code a certain amount of randomness while I still control the overall system.</p>
+
+<p>At the same time, code can also work against me. For example, making one quote move out and another move in feels very simple in my head, but in code it has to be broken into very specific logic. I also have to think about possible conflicts or unexpected situations before it can run smoothly. This makes me realize how different an intuitive idea can become once it has to be translated into code.</p>
+
+<p>This semester, I am excited to explore code beyond the screen. I want to experiment more with sound, physical interaction, and responsive systems, and see how code can become part of the creative process itself.</p>
+<hr>
+
+<h2 id="label-sketch.js+coding+notes">sketch.js coding notes</h2>
+
+<p>The last time I worked with p5.js was almost a year ago. Coming back to Creative Coding this time, I wanted to refresh my memory and also learn more things that I did not get to try in my undergraduate Creative Coding course.</p>
+
+<p>This Week 1 assignment helped me bring back some memories of the p5 library and coding.</p>
+
+<p>Besides replacing the original “CC is…” quotes as required by the assignment, I also tried to write some CSS and animation.</p>
+
+<h3 id="label-First-2C+CSS-3A">First, CSS:</h3>
+<ol><li>
+<p>I created several background and text color combinations (inspired by the colors of some of my favorite bubble tea brands in Taiwan).</p>
+</li><li>
+<p>I put them into an array of objects called <code>colorPairs</code>. Each pair has a <code>bg</code> and <code>text</code> value, so when the background color changes, it can also switch to a matching text color.</p>
+</li><li>
+<p>I used <code>pickColor()</code> to choose the next color pair, and <code>shuffle()</code> to randomize the order of <code>colorPairs</code>, so the order of the colors can be different each time.</p>
+</li><li>
+<p>At first, I used random selection directly, but I realized that the same color could appear multiple times in a row. So I changed it to pick colors in order from the shuffled array. This way, every color appears once before the array is shuffled again, and it avoids repeatedly picking the same color.</p>
+</li><li>
+<p>Finally, in <code>draw()</code>, I used <code>currentColor.bg</code> and <code>currentColor.text</code> to control <code>background()</code> and <code>fill()</code>, so each quote can appear with a different background and text color combination.</p>
+</li><li>
+<p>Some of the quotes and sources were too long and could go outside the screen, so I also adjusted the text layout to make them fit better.</p>
+</li><li>
+<p>Instead of only giving text() an x and y position, I also gave it a width and height, so p5.js can wrap the text automatically when the content is too long.</p>
+</li><li>
+<p>I used relative values based on the browser size instead of fixed dimensions, so the text area can change with the window size.</p>
+</li><li>
+<p>I also adjusted the text alignment, line spacing, and source position to keep the quote and source readable and prevent them from going outside the screen.</p>
+</li></ol>
+
+<h3 id="label-Next-2C+animation-3A">Next, animation:</h3>
+<ol><li>
+<p>I wanted to try creating a move in / move out feeling for the quotes.</p>
+</li><li>
+<p>My approach was to first create states: <code>anim</code> records the progress of the animation, while <code>isExiting</code> / <code>isEntering</code> record the entering and exiting states of the old and new quotes.</p>
+</li><li>
+<p>I modified what happens after a mouse click. Originally, clicking would directly generate a new quote. I changed it so the old quote has to move out first, and then the new quote can move in. I also check both states to make sure clicking the mouse while an animation is already happening will not start another animation and cause conflicts.</p>
+</li><li>
+<p>Inside <code>draw()</code>, I update <code>anim</code> depending on the <code>isExiting</code> / <code>isEntering</code> state. When the old quote is leaving, <code>anim</code> gradually decreases from 1 to 0. When the new quote enters, it increases from 0 to 1.</p>
+</li><li>
+<p>I use <code>anim</code> to control <code>xOffset</code>:</p>
+<pre><code>anim = 1 → xOffset = 0
+anim = 0 → xOffset = -width (outside the screen)</code></pre>
+</li><li>
+<p>I use <code>lerp(start, end, amount)</code> to calculate what the current <code>xOffset</code> should be. <code>anim</code> can be used as the <code>amount</code>, so the position changes between the start and end positions based on the progress of the animation.</p>
+</li><li>
+<p>I add <code>xOffset</code> to the x position of the text. Since <code>xOffset</code> is updated continuously, the position of the text also keeps changing.</p>
+</li><li>
+<p><strong>Because <code>draw()</code> in p5.js keeps updating by default</strong>, I need to stop updating <code>anim</code> when the animation is finished. Otherwise, it would keep increasing or decreasing. Therefore, I need to set conditions and update the <code>isExiting</code> / <code>isEntering</code> states when each animation finishes.</p>
+</li><li>
+<p>Finally, to make the movement look a little better, I added an easing effect. I used an <code>easeOutCubic</code> cubic curve to change the <code>amount</code> used by <code>lerp()</code>. Originally, <code>anim</code> changes linearly from 0 to 1 at a constant rate. With easing, the movement can start faster and slow down near the end, making the move in / move out animation feel less like simple constant-speed movement.</p>
+</li></ol>
+<hr>
+
+<h2 id="label-cc+is...+def+and+src+list">cc is… def and src list</h2>
+
+<h3 id="label-1.+A+new+interdisciplinary+art+form+that+bridges+the+gap+between+technologists+and+artists.">1. A new interdisciplinary art form that bridges the gap between technologists and artists.</h3>
+
+<p><strong>Definition:</strong></p>
+
+<p>“Creative coding detaches code from its original purpose as a tool for functional problem solving.”</p>
+
+<p><strong>Source:</strong> Ahmad Moussa — <em>Creative Coding: The New Era</em>, Gorilla Sun, 2023.</p>
+
+<p><strong>Link:</strong> <a href="https://www.gorillasun.de/blog/creative-coding-the-new-era">www.gorillasun.de/blog/creative-coding-the-new-era</a>/</p>
+
+<h3 id="label-2.+Sketching+with+code.">2. Sketching with code.</h3>
+
+<p><strong>Definition:</strong></p>
+
+<p>“One idea was the synthesis of graphic design with computer science, combining the visual principles of design with ways of thinking about systems from computer science. We also wanted to share a way of working with code where things are figured out during the process of writing the software. We called this sketching with code.”</p>
+
+<p><strong>Source:</strong> Casey Reas &amp; Ben Fry — <em>A Modern Prometheus: The History of Processing</em>, Processing Foundation, 2018.</p>
+
+<p><strong>Link:</strong> <a href="https://medium.com/processing-foundation/a-modern-prometheus-59aed94abe85">medium.com/processing-foundation/a-modern-prometheus-59aed94abe85</a></p>
+
+<h3 id="label-3.+Writing+code+without+necessarily+knowing+where+it+is+going.">3. Writing code without necessarily knowing where it is going.</h3>
+
+<p><strong>Definition:</strong></p>
+
+<p>“And for me, it boils down to the idea that when I’m, you know, in giant air quotes, now ‘Creative Coding’, I am writing code where that I don’t knowx where it’s going, necessarily.”</p>
+
+<p><strong>Source:</strong> Daniel Shiffman — <em>Daniel Shiffman on The Nature of Code</em>, interview by Tim Rodenbröker.</p>
+
+<p><strong>Link:</strong> <a href="https://timrodenbroeker.de/daniel-shiffman">timrodenbroeker.de/daniel-shiffman</a>/</p>
+
+<h3 id="label-4.+Creative+coding+is+the+practice+of+combining+programming+techniques+with+artistic+expression.">4. Creative coding is the practice of combining programming techniques with artistic expression.</h3>
+
+<p><strong>Definition:</strong></p>
+
+<p>“Creative coding is the practice of combining programming techniques with artistic expression in order to create aesthetically pleasing and optimized interactive digital experiences. In traditional programming, the primary focus usually is set on providing functionality and efficiency in a digital space. Creative coding adds equal emphasis on aesthetics and emotional impact.”</p>
+
+<p><strong>Source:</strong> SMU Meadows School of the Arts — <em>What is Creative Coding?</em>, January 5, 2024.</p>
+
+<p><strong>Link:</strong> <a href="https://www.smu.edu/meadows/newsandevents/news/2023/what-is-creative-coding">www.smu.edu/meadows/newsandevents/news/2023/what-is-creative-coding</a></p>
+
+<h3 id="label-5.+Creative+coding+uses+software-2C+code+and+computational+processes+to+be+expressive+or+to+create+art+forms.">5. Creative coding uses software, code and computational processes to be expressive or to create art forms.</h3>
+
+<p><strong>Definition:</strong></p>
+
+<p>“Creative coding uses software, code and computational processes to be expressive or to create art forms. While creative coding is generally thought of as more aesthetic than functional, it is becoming increasingly commonplace in advertising, branding and the wider design industry.”</p>
+
+<p><strong>Source:</strong> University of the Arts London — <em>How to Start Creative Coding</em>.</p>
+
+<p>The article also features creative coding artist and lecturer Damien Borowik.</p>
+
+<p><strong>Link:</strong> <a href="https://www.arts.ac.uk/study-at-ual/short-courses/stories/how-to-start-creative-coding">www.arts.ac.uk/study-at-ual/short-courses/stories/how-to-start-creative-coding</a></p>
+
+<h3 id="label-6.+Creative+coding+is+the+practice+of+making+art+with+code.">6. Creative coding is the practice of making art with code.</h3>
+
+<p><strong>Definition:</strong></p>
+
+<p>“Creative coding is the practice of making art with code. As computers have become more integral in our lives, artists have turned to the language the computer speaks, code, to communicate their ideas.”</p>
+
+<p><strong>Source:</strong> Andrew Bryant — artist and coder, <em>How to Make Art with Creative Coding</em>, Artsy Shark, 2021.</p>
+
+<p><strong>Link:</strong> <a href="https://www.artsyshark.com/2021/05/26/what-is-creative-coding">www.artsyshark.com/2021/05/26/what-is-creative-coding</a>/</p>
+
+<h3 id="label-7.+For+me+Creative+Coding+is+a+method+of+exploring+code+through+the+lens+of+a+designer.">7. For me Creative Coding is a method of exploring code through the lens of a designer.</h3>
+
+<p><strong>Definition:</strong></p>
+
+<p>“For me Creative Coding is a method of exploring code through the lens of a designer. Code becomes the fabric, the tool we work with. It opens doors to creating new generative things living outside the boundaries of the traditional designer’s toolkit.</p>
+
+<p>I view it as an explorative method allowing us to playfully navigate and adapt to new technologies. An experimental playground where code becomes both tool and artistic device. It will lead you on an open journey with uncertain and unpredictable outcome. In that sense creative coders are pioneers operating at the frontier of new technologies and exploring their potential.”</p>
+
+<p><strong>Source:</strong> Nahuel Gerth — <em>Getting started with Creative Coding</em>.</p>
+
+<p><strong>Link:</strong> <a href="https://nahuelgerth.de/thoughts/getting-started-with-creative-coding">nahuelgerth.de/thoughts/getting-started-with-creative-coding</a></p>
+
+<h3 id="label-8.+Creative+Coding+is+a+way+of+learning+how+to+program+by+creating+visual+art+with+computer+graphics.">8. Creative Coding is a way of learning how to program by creating visual art with computer graphics.</h3>
+
+<p><strong>Definition:</strong></p>
+
+<p>“Creative Coding is a way of learning how to program by creating visual art with computer graphics. It&#39;s an umbrella term that encompasses many different approaches to using code as a medium for art.”</p>
+
+<p><strong>Source:</strong> Masood Kamandy — <em>Creative Coding with Swift</em>, an open-source course developed for Pasadena City College and the University of California Santa Barbara.</p>
+
+<p><strong>Link:</strong> <a href="https://github.com/bluekamandy/Creative-Coding-Course-with-SwiftProcessing">github.com/bluekamandy/Creative-Coding-Course-with-SwiftProcessing</a></p>
+
+<h3 id="label-9.+Creative+coding+uses+programming+languages+to+generate+art+and+music.">9. Creative coding uses programming languages to generate art and music.</h3>
+
+<p><strong>Definition:</strong></p>
+
+<p>“Creative coding, which uses code to generate on-screen art and music. Code serves as the paintbrush and the computer as the canvas.”</p>
+
+<p><strong>Source:</strong> University of York — <em>Creative Coding</em>, from the online course <em>Fundamentals of Creative Technologies and Interactive Experiences</em>, hosted on FutureLearn.</p>
+
+<p><strong>Link:</strong> <a href="https://www.futurelearn.com/info/courses/fundamentals-of-creative-technologies-and-interactive-experiences/0/steps/451373">www.futurelearn.com/info/courses/fundamentals-of-creative-technologies-and-interactive-experiences/0/steps/451373</a></p>
+
+<h3 id="label-10.+Where+the+artist-programmer+is+primarily+invested+in+speculation-2C+experimentation-2C+and+iterative+practice.">10. Where the artist-programmer is primarily invested in speculation, experimentation, and iterative practice.</h3>
+
+<p><strong>Definition:</strong></p>
+
+<p>“Distinct from the instrumental and disciplinary approaches in computer science where software is ‘engineered’ and technical principles are mastered in a formal sense, creative coding is defined by a more playful, interdisciplinary mindset where the artist-programmer is primarily invested in speculation, experimentation, and iterative practice.”</p>
+
+<p><strong>Source:</strong> David Young — “Theorising while() Practising: A Review of Aesthetic Programming,” <em>Computational Culture</em>, Issue 8, 2021.</p>
+
+<p><strong>Link:</strong> <a href="https://computationalculture.net/theorising-while-practising-a-review-of-aesthetic-programming">computationalculture.net/theorising-while-practising-a-review-of-aesthetic-programming</a>/</p>
+
+      </article>
+      <footer class="notes-footer"><a href="README.md">Original Markdown</a> · <a href="../index.html">Back to all projects</a></footer>
+    </main>
+  </body>
+</html>

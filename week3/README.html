@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Week 3 notes — Marcus Shih</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <main class="notes-page">
+      <nav class="notes-nav" aria-label="Notes navigation">
+        <a href="../index.html">← All projects</a>
+        <a href="index.html">View Week 3 sketch</a>
+      </nav>
+      <article class="notes-content">
+        <h1 id="label-Week+3+-+Iteration+Generation">
+          Week 3 - Iteration Generation
+        </h1>
+
+        <p>
+          I love listening to music while I work. By chance, Spotify started
+          playing Coldplay’s album A Head Full of Dreams, whose cover looks like
+          a kaleidoscope. That made me realize that loops and repetition are the
+          basic principles behind making a kaleidoscope, so I decided to start
+          sketching one.
+        </p>
+
+        <h2 id="label-Sketch+1+-+Grid+Iteration">Sketch 1 - Grid Iteration</h2>
+
+        <p>For my first sktech, I started from a very basic grid pattern.</p>
+
+        <p>
+          I used two for loops to repeat the same shape on both x and y
+          direction. Then I tried to change the rotation, size, and color based
+          on the position of each shape.
+        </p>
+
+        <p>
+          At first I just wanted to understand how the loop works when it
+          repeats a simple form many times. After that I started to change some
+          values inside the loop, so the pattern would not look completely the
+          same.
+        </p>
+
+        <p>
+          This version was quite simple, but it helped me understand the basic
+          idea of iteration.
+        </p>
+        <hr />
+
+        <h2 id="label-Sketch+2+-+Interactive+Grid">
+          Sketch 2 - Interactive Grid
+        </h2>
+
+        <p>
+          For the second sketch, I kept the same grid idea, but I wanted to make
+          it react to mouse movement.
+        </p>
+
+        <p>
+          I used <code>dist()</code> to calculate the distance between the mouse
+          and each shape.
+        </p>
+
+        <pre
+          class="ruby"
+        ><span class="ruby-identifier">let</span> <span class="ruby-identifier">d</span> = <span class="ruby-identifier">dist</span>(<span class="ruby-identifier">mouseX</span>, <span class="ruby-identifier">mouseY</span>, <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>);
+</pre>
+
+        <p>
+          Then I used <code>map()</code> to turn the distance into another value
+          that I could use for size, rotation, and color.
+        </p>
+
+        <pre
+          class="ruby"
+        ><span class="ruby-identifier">let</span> <span class="ruby-identifier">influence</span> = <span class="ruby-identifier">map</span>(<span class="ruby-identifier">d</span>, <span class="ruby-value">0</span>, <span class="ruby-identifier">maxDistance</span>, <span class="ruby-value">1</span>, <span class="ruby-value">0</span>);
+</pre>
+
+        <p>
+          The shapes closer to the mouse become bigger and rotate more. Their
+          hue also changes when the mouse gets closer.
+        </p>
+
+        <p>
+          I think this made the pattern feel more alive because the grid is
+          still repeating the same form, but each shape can react differently
+          depending on the mouse position.
+        </p>
+        <hr />
+
+        <h2 id="label-Skecth+3+-+Kaleidoscope">Skecth 3 - Kaleidoscope</h2>
+
+        <p>
+          I love listening to music when I&#39;m working. By chance, Spotify
+          started playing Coldplay&#39;s album <em>A Head Full of Dreams</em>,
+          and I noticed that the album cover looks like a kaleidoscope. It made
+          me think that loops and repetition are also the basic rules of making
+          a kaleidoscope, so I started to sketch one.
+        </p>
+
+        <p>
+          I created first no movement kaleidoscope by using loop function to
+          draw different shapes, mostly circles.
+        </p>
+
+        <p>
+          I divided <code>TWO_PI</code> by the number of shapes so that each
+          repeated form would be spaced evenly around one full circle.
+        </p>
+
+        <p>
+          I then repeated this process with ellipses, triangles, squares, and a
+          center hexagon.
+        </p>
+
+        <p>After building the radial pattern, I added more behavior:</p>
+        <ul>
+          <li>
+            <p>multiple kaleidoscope layers</p>
+          </li>
+          <li>
+            <p>random HSB color palettes</p>
+          </li>
+          <li>
+            <p>continuous zooming</p>
+          </li>
+          <li>
+            <p>rotation</p>
+          </li>
+          <li>
+            <p>new layers spawning from the center</p>
+          </li>
+          <li>
+            <p>old layers being removed after they move outside the canvas</p>
+          </li>
+          <li>
+            <p>mouse-controlled rotation</p>
+          </li>
+          <li>
+            <p>mouse-controlled zoom speed</p>
+          </li>
+          <li>
+            <p>mouse-controlled brightness</p>
+          </li>
+          <li>
+            <p>click interaction</p>
+          </li>
+        </ul>
+
+        <p>
+          After I adjusted the rotation speed to very very fast, the final
+          result started to feel more like a tunnel than a static kaleidoscope.
+        </p>
+
+        <p>
+          I did not plan the tunnel effect at the beginning, but I liked how it
+          looked, so I kept developing it in this direction.
+        </p>
+
+        <p>
+          This version became much more complicated than the first two sketches,
+          but it helped me understand what is actually happening behind radial
+          repetition before using a library.
+        </p>
+        <hr />
+
+        <h2 id="label-Sketch+4+-+p5.Polar+Version">
+          Sketch 4 - p5.Polar Version
+        </h2>
+
+        <p>
+          For the bonus version, I tried to recreate the kaleidoscope with the
+          p5.Polar library.
+        </p>
+
+        <p>
+          The final visual is quite similar to Sketch 3, but the way I made it
+          is very different.
+        </p>
+
+        <p>In Sketch 3, I had to calculate the angle by myself:</p>
+
+        <pre
+          class="ruby"
+        ><span class="ruby-identifier">let</span> <span class="ruby-identifier">a</span> = <span class="ruby-identifier">i</span> <span class="ruby-operator">*</span> (<span class="ruby-constant">TWO_PI</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">num</span>);
+</pre>
+
+        <p>Then for every shape I needed to use:</p>
+
+        <pre
+          class="ruby"
+        ><span class="ruby-identifier">rotate</span>(<span class="ruby-identifier">a</span>);
+<span class="ruby-identifier">translate</span>(<span class="ruby-identifier">distance</span>, <span class="ruby-value">0</span>);
+</pre>
+
+        <p>to move the repeated shapes around the center.</p>
+
+        <p>After I started using p5.Polar, I could use functions like:</p>
+
+        <pre>
+polarEllipses(...)
+polarSquares(...)
+polarTriangles(...)
+polarHexagon(...)</pre
+        >
+
+        <p>This made the radial repetition much easier.</p>
+
+        <p>
+          I think the biggest difference is that in my manual version I spent
+          more time thinking about where every shape should go, but with
+          p5.Polar I could spend more time adjusting the layers, colors, scale,
+          and movement.
+        </p>
+
+        <p>
+          I still think making the manual version first was useful because
+          otherwise I probably would not really understand what p5.Polar is
+          doing for me.
+        </p>
+        <hr />
+
+        <h2
+          id="label-New+Calls+and+Functions+I+Learned+via+P5+reference+and+Internet+research"
+        >
+          New Calls and Functions I Learned via P5 reference and Internet
+          research
+        </h2>
+
+        <p>
+          During this assignment, I also researched some new p5.js calls and
+          functions because I needed them for the interaction and kaleidoscope.
+        </p>
+
+        <h3 id="label-map-28-29"><code>map()</code></h3>
+
+        <p>
+          <code>map()</code> was one of the most useful new functions for me.
+        </p>
+
+        <p>
+          It can take one range of numbers and change it into another range.
+        </p>
+
+        <p>For example:</p>
+
+        <pre
+          class="ruby"
+        ><span class="ruby-identifier">rotation</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">map</span>(<span class="ruby-identifier">mouseX</span>, <span class="ruby-value">0</span>, <span class="ruby-identifier">width</span>, <span class="ruby-value">-0.035</span>, <span class="ruby-value">0.035</span>);
+</pre>
+
+        <p>
+          Here, the mouse x position is originally between <code>0</code> and
+          <code>width</code>, and I change it into a rotation speed between
+          <code>-0.035</code> and <code>0.035</code>.
+        </p>
+
+        <p>
+          I also used <code>map()</code> for zoom speed, brightness, size, and
+          color.
+        </p>
+        <hr />
+
+        <h3 id="label-dist-28-29"><code>dist()</code></h3>
+
+        <p>
+          I used <code>dist()</code> to calculate how far the mouse is from a
+          shape or from the center of the canvas.
+        </p>
+
+        <p>For example:</p>
+
+        <pre
+          class="ruby"
+        ><span class="ruby-identifier">let</span> <span class="ruby-identifier">d</span> = <span class="ruby-identifier">dist</span>(<span class="ruby-identifier">mouseX</span>, <span class="ruby-identifier">mouseY</span>, <span class="ruby-identifier">width</span> <span class="ruby-operator">/</span> <span class="ruby-value">2</span>, <span class="ruby-identifier">height</span> <span class="ruby-operator">/</span> <span class="ruby-value">2</span>);
+</pre>
+
+        <p>I used this distance to control the tunnel.</p>
+
+        <p>
+          When the mouse moves closer to the center, the tunnel can become
+          faster and brighter.
+        </p>
+        <hr />
+
+        <h3 id="label-constrain-28-29"><code>constrain()</code></h3>
+
+        <p>I used <code>constrain()</code> together with <code>map()</code>.</p>
+
+        <p>
+          Sometimes the mapped value can go outside the range I want, so I used:
+        </p>
+
+        <pre
+          class="ruby"
+        ><span class="ruby-identifier">mousePower</span> = <span class="ruby-identifier">constrain</span>(<span class="ruby-identifier">mousePower</span>, <span class="ruby-value">0</span>, <span class="ruby-value">1</span>);
+</pre>
+
+        <p>This keeps the value between 0 and 1.</p>
+        <hr />
+
+        <h3 id="label-randomSeed-28-29"><code>randomSeed()</code></h3>
+
+        <p>
+          At first I used a lot of <code>random()</code> because I wanted every
+          kaleidoscope to have a different pattern and color.
+        </p>
+
+        <p>
+          But I found that if I only use <code>random()</code> inside
+          <code>draw()</code>, the random result changes every frame, so the
+          shapes keep flickering.
+        </p>
+
+        <p>Then I learned about <code>randomSeed()</code>.</p>
+
+        <p>Each kaleidoscope has its own seed:</p>
+
+        <pre>seed: random(10000);</pre>
+
+        <p>and before drawing it I use:</p>
+
+        <pre
+          class="ruby"
+        ><span class="ruby-identifier">randomSeed</span>(<span class="ruby-identifier">seed</span>);
+</pre>
+
+        <p>
+          This lets every kaleidoscope be different, but the same kaleidoscope
+          can keep the same shape while it is rotating and zooming.
+        </p>
+        <hr />
+
+        <h3 id="label-TWO_PI"><code>TWO_PI</code></h3>
+
+        <p>I used <code>TWO_PI</code> to represent one full circle.</p>
+
+        <p>For example:</p>
+
+        <pre
+          class="ruby"
+        ><span class="ruby-identifier">let</span> <span class="ruby-identifier">a</span> = <span class="ruby-identifier">i</span> <span class="ruby-operator">*</span> (<span class="ruby-constant">TWO_PI</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">num</span>);
+</pre>
+
+        <p>If I want 12 shapes, I divide one full circle into 12 parts.</p>
+
+        <p>
+          Before this assignment I did not really think about using
+          <code>TWO_PI</code> this way, but it became the basic logic of my
+          manual kaleidoscope.
+        </p>
+        <hr />
+
+        <h3 id="label-pixelDensity-28-29"><code>pixelDensity()</code></h3>
+
+        <p>
+          I found <code>pixelDensity()</code> from the p5.js reference when I
+          was trying to make the lines look cleaner.
+        </p>
+
+        <pre
+          class="ruby"
+        ><span class="ruby-identifier">pixelDensity</span>(<span class="ruby-value">2</span>);
+</pre>
+
+        <p>
+          I am using a Retina screen, and the sketch looked noticeably sharper
+          after I changed the pixel density.
+        </p>
+        <hr />
+
+        <h3 id="label-pow-28-29"><code>pow()</code></h3>
+
+        <p>
+          I used <code>pow()</code> when I created the starting size of
+          different kaleidoscope layers.
+        </p>
+
+        <pre>scale: 1 / pow(spacing, i);</pre>
+
+        <p>This lets each new layer start smaller than the previous layer.</p>
+
+        <p>
+          It helped me create the feeling that there are many layers going
+          deeper into the center.
+        </p>
+        <hr />
+
+        <h2 id="label-Reflection">Reflection</h2>
+
+        <p>
+          I think the biggest thing I learned this week is that iteration does
+          not have to mean simply copying the exact same shape again and again.
+        </p>
+
+        <p>
+          The first sketch is mostly basic repetition. In the second sketch, I
+          added mouse interaction and made each repeated shape react
+          differently.
+        </p>
+
+        <p>
+          Then in Sktech 3, I changed the grid repetition into circular
+          repetition and made the kaleidoscope manually. This part was much
+          harder because I had to think about angle, rotation, and distance from
+          the center.
+        </p>
+
+        <p>
+          After I understood the manual version, p5.Polar became much easier to
+          understand. I could see which parts of my code the library was helping
+          me replace.
+        </p>
+
+        <p>
+          I also learned that sometimes the result can go somewhere I did not
+          plan. I originally wanted to make a kaleidoscope, but after increasing
+          the zoom and rotation speed, it started to look like a tunnel. I liked
+          that result, so I kept it and continued experimenting from there.
+        </p>
+
+        <p>
+          I think this was also one of the interesting parts of creative coding
+          for me. I can start with one rule or Sktech, but after changing some
+          parameters, the system can create another visual result that I did not
+          expect.
+        </p>
+      </article>
+      <footer class="notes-footer">
+        <a href="README.md">Original Markdown</a> ·
+        <a href="../index.html">Back to all projects</a>
+      </footer>
+    </main>
+  </body>
+</html>

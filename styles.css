@@ -1,0 +1,263 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+
+  color: #242521;
+  font-family: "Saira", sans-serif;
+  line-height: 1.5;
+}
+
+main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 56px 28px 72px;
+}
+
+header {
+  margin-bottom: 36px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #62655b;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 28px 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-card {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+
+  background: #fff;
+  color: inherit;
+  text-decoration: none;
+}
+
+.thumbnail-frame {
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: #e7e7df;
+}
+
+.thumbnail {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  transition: transform 400ms ease;
+  object-fit: cover;
+  background: #e7e7df;
+}
+
+.project-title {
+  display: block;
+  padding: 14px 0 0;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.project-card:hover .thumbnail,
+.project-card:focus-visible .thumbnail {
+  transform: scale(1.035);
+}
+
+.project-card:hover .project-title,
+.project-card:focus-visible .project-title {
+  text-decoration-line: underline;
+}
+
+.project-card:focus-visible {
+  outline: 3px solid #0056b8;
+  outline-offset: 4px;
+}
+
+@media (max-width: 600px) {
+  main {
+    padding: 32px 20px 48px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thumbnail {
+    transition: none;
+  }
+
+  .project-card:hover .thumbnail,
+  .project-card:focus-visible .thumbnail {
+    transform: none;
+  }
+}
+
+.note-thumbnail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px;
+  color: #242521;
+}
+
+.note-color-1 {
+  background: #f68320;
+}
+.note-color-2 {
+  background: #d1d7ee;
+}
+.note-color-3 {
+  background: springgreen;
+}
+.note-color-5 {
+  background: Turquoise;
+}
+.note-color-6 {
+  background: BurlyWood;
+}
+
+.note-week,
+.note-caption {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.note-word {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.note-arrow {
+  font-size: 0.6em;
+}
+
+.notes-page {
+  max-width: 840px;
+}
+
+.notes-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 24px;
+  margin-bottom: 48px;
+  font-size: 0.9rem;
+}
+
+.notes-page a {
+  color: inherit;
+  text-underline-offset: 4px;
+  overflow-wrap: anywhere;
+}
+
+.notes-page a:hover {
+  color: plum;
+}
+
+.notes-page a:focus-visible {
+  outline: 2px solid #0056b8;
+  outline-offset: 4px;
+}
+
+.notes-content {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.notes-content h1 {
+  margin-bottom: 32px;
+}
+
+.notes-content h2,
+.notes-content h3 {
+  margin: 40px 0 16px;
+  line-height: 1.3;
+}
+
+.notes-content h2 {
+  font-size: 1.6rem;
+}
+.notes-content h3 {
+  font-size: 1.2rem;
+}
+
+.notes-content p,
+.notes-content li {
+  margin-bottom: 20px;
+}
+
+.notes-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 32px auto;
+}
+
+.notes-content pre {
+  padding: 20px;
+  overflow-x: auto;
+  background: #f2f3ef;
+  line-height: 1.6;
+}
+
+.notes-content code {
+  font-family: ui-monospace, monospace;
+  font-size: 0.9em;
+}
+
+.notes-content :not(pre) > code {
+  padding: 2px 5px;
+  background: #f2f3ef;
+}
+
+.notes-content hr {
+  border: 0;
+  border-top: 1px solid #dcded4;
+  margin: 40px 0;
+}
+
+.notes-footer {
+  border-top: 1px solid #dcded4;
+  margin-top: 48px;
+  padding-top: 24px;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  .note-word {
+    font-size: clamp(3.25rem, 14vw, 5rem);
+  }
+
+  .note-week,
+  .note-caption {
+    font-size: clamp(1rem, 4vw, 1.25rem);
+  }
+}
