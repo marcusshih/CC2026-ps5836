@@ -10,4 +10,4 @@ After finishing the left wall, I wasn't really sure what to do with the other tw
 
 The hardest part for me was the math, especially how to make the curves and distorted patterns. I used an LLM to help with the coding and math calculations. Some earlier versions were too complicated for me, so I tried to simplify the code while keeping the similar visual effect. I think this also helped me understand more about how changing different values can affect the final result.
 
-[![YouTube Video](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)](https://youtube.com/shorts/CYxKWeHvEwA?feature=share)
+[![YouTube Video](https://img.youtube.com/vi/CYxKWeHvEwA/maxresdefault.jpg)](https://youtube.com/shorts/CYxKWeHvEwA?feature=share)
