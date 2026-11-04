@@ -71,6 +71,11 @@ h1 {
   background: #e7e7df;
 }
 
+.thumbnail-week8 {
+  scale: 1.1;
+  translate: 5% 0;
+}
+
 .project-title {
   display: block;
   padding: 14px 0 0;
