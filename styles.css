@@ -71,6 +71,10 @@ h1 {
   background: #e7e7df;
 }
 
+.thumbnail-week10 {
+  object-position: left center;
+}
+
 .thumbnail-week8 {
   scale: 1.1;
   translate: 5% 0;
