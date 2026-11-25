@@ -1,4 +1,4 @@
-# Alternative Guitar
+# Week 10
 
 For this assignment, I wanted to create an alternative version of a guitar. Since the guitar is the instrument I am most familiar with, I thought it would be easier for me to learn a new digital instrument if I could build it around the playing techniques and musical concepts I already know.
 
