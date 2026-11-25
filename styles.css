@@ -147,6 +147,20 @@ h1 {
 .note-color-7 {
   background: #d9c7ef;
 }
+.note-color-11 {
+  background: #FEBE02;
+}
+
+.proposal-thumbnail {
+  align-items: flex-start;
+  justify-content: center;
+  text-align: left;
+}
+
+.proposal-thumbnail .note-word {
+  display: block;
+  width: 100%;
+}
 
 .note-week,
 .note-caption {

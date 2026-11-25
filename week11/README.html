@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Week 11 notes — Marcus Shih</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <main class="notes-page">
+      <nav class="notes-nav" aria-label="Notes navigation">
+        <a href="../index.html">← All projects</a>
+        <a href="index.html">View Week 11 sketch</a>
+      </nav>
+      <article class="notes-content">
+<h1>WEEK11</h1>
+
+<h2>Inspiration</h2>
+
+<p>As I am interested in accessibility, I started looking into Accessible Pedestrian Signals (APS) in New York City. These signals provide audible and tactile information to help blind and low-vision pedestrians cross streets.</p>
+
+<p>I noticed that this kind of infrastructure is often overlooked by sighted pedestrians. I wanted to explore how accessibility in NYC has changed over time and make this development more visible through data visualization.</p>
+
+<p>Since APS communicate information through sound, I also wanted to incorporate sound into the visualization itself.</p>
+
+<h2>Implementation</h2>
+
+<p>I used two datasets from NYC Open Data to visualize the installation of APS across the five boroughs of New York City.</p>
+
+<p>Each yellow dot represents an APS location. As the timeline progresses, new locations appear with a small ripple animation and sound. Each borough has a different sound frequency, and the sounds become more frequent when more APS locations are installed within a short period of time.</p>
+
+<p>Users can play, pause, reset, or drag the timeline to explore different years. The visualization also displays the total number of APS locations and the number of new installations during each year.</p>
+
+<p>Through the combination of visuals and sound, I hope to provide a different way of experiencing the development of accessible infrastructure in NYC.</p>
+
+<h2>Data Sources</h2>
+
+<ul>
+<li><a href="https://data.cityofnewyork.us/resource/de3m-c5p4.json?$limit=10000">Accessible Pedestrian Signals (APS)</a></li>
+<li><a href="https://data.cityofnewyork.us/resource/gthc-hcne.json?$limit=10">NYC Borough Boundaries</a></li>
+</ul>
+      </article>
+      <footer class="notes-footer"><a href="README.md">Original Markdown</a> · <a href="../index.html">Back to all projects</a></footer>
+    </main>
+  </body>
+</html>
